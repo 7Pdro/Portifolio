@@ -43,9 +43,6 @@ modelViewer.addEventListener('camera-change', () => {
     }
 });
 
-// ==================================================
-// TROCA DE TEMA
-// ==================================================
 const themeToggleBtn = document.getElementById('themeToggle');
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
