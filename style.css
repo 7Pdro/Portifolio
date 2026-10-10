@@ -72,7 +72,6 @@ body.dark-mode .painel-3d {
     border-color: #AE7CD9;
 }
 
-/* Alterar o fundo dos botões das redes sociais */
 body.dark-mode .botão-redes {
     background-color: #AE7CD9;
 }
@@ -81,7 +80,6 @@ body.dark-mode .botão-redes:hover {
     background-color: #c996f7;
 }
 
-/* Alterar o gradiente dos círculos animados no fundo */
 body.dark-mode .gradient-circle {
     background: conic-gradient(from 0deg, #9D3BD5, #E4B7FF, #9D3BD5);
 }
@@ -108,12 +106,10 @@ body.dark-mode .painel-3d {
     border-color: #AE7CD9;
 }
 
-/* Botões do GitHub e LinkedIn */
 body.dark-mode .botão-redes {
     background-color: #AE7CD9;
 }
 
-/* Círculos do background com as cores exatas */
 body.dark-mode .gradient-circle {
     background: conic-gradient(from 0deg, #9D3BD5, #E4B7FF, #9D3BD5);
 }
@@ -155,9 +151,6 @@ model-viewer {
     pointer-events: auto;
 }
 
-/* ==================================================
-   MOLDURAS DOS CANTOS
-   ================================================== */
 .moldura-sup {
     position: absolute;
     top: -25px;
@@ -177,23 +170,17 @@ model-viewer {
     z-index: 5;
 }
 
-/* ==================================================
-   ALTURA DOS PAINÉIS
-   ================================================== */
 .painel-sobre { height: 62vh; }
 .painel-skills { height: 381px; }
 .painel-projetos { height: 438px; }
 
-/* ==================================================
-   TEXTOS DO PAINEL
-   ================================================== */
 .painel-3d h3 {
     font-family: 'Intel One Mono', monospace;
     font-size: 42px;
     font-weight: 350;
-    margin: 0 0 8px 0; /* Removida altura fixa de 100px que criava o buraco */
+    margin: 0 0 8px 0; 
     width: 100%;
-    height: auto;      /* Agora o título ocupa apenas o espaço necessário */
+    height: auto;     
     display: flex;
     line-height: 1.1; 
 }
@@ -243,9 +230,6 @@ p {
     width: 100%;
 }
 
-/* ==================================================
-   TEXTOS FORA DOS PAINÉIS
-   ================================================== */
 .introducao {
     position: absolute;
     top: 70px;
@@ -331,24 +315,21 @@ p {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    overflow: hidden; /* Evita barra de rolagem se os círculos vazarem */
+    overflow: hidden; 
 }
 
 .gradient-circle {
     position: absolute;
     border-radius: 50%;
-    /* Usa a variável --espessura, se você não definir nenhuma ele usa 2px */
     padding: var(--espessura, 2px); 
     background: conic-gradient(from 0deg, #30FF37, #1ba11d, #74ff79, #30FF37);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     animation: spin linear infinite;
-    /* Usa a variável --opacidade para deixar alguns círculos mais fracos */
     opacity: var(--opacidade, 1);
 }
 
-/* 1. Círculo grande superior esquerdo */
 .circle-1 { 
     --espessura: 3px; 
     --opacidade: 0.7;
@@ -357,7 +338,6 @@ p {
     animation-duration: 8s; 
 }
 
-/* 2. Círculo médio cortando o canto inferior esquerdo */
 .circle-2 { 
     --espessura: 3px;
     width: 35vw; height: 35vw; 
@@ -366,7 +346,6 @@ p {
     animation-direction: reverse; 
 }
 
-/* 3. Círculo central perto do texto */
 .circle-3 { 
     --espessura: 3px; 
     --opacidade: 0.6;
@@ -375,7 +354,6 @@ p {
     animation-duration: 7s; 
 }
 
-/* 4. Círculo gigante e fininho na direita (bem discreto) */
 .circle-4 { 
     --espessura: 6px; 
     --opacidade: 0.4;
@@ -384,7 +362,6 @@ p {
     animation-duration: 15s; 
 }
 
-/* 5. Círculo inferior direito */
 .circle-5 { 
     --espessura: 3px; 
     --opacidade: 0.5;
@@ -393,7 +370,6 @@ p {
     animation-duration: 9s; 
 }
 
-/* 6. Círculo grande de fundo para preencher espaço vazio */
 .circle-6 { 
     --espessura: 4px; 
     width: 40vw; height: 40vw; 
@@ -407,9 +383,6 @@ p {
     to { transform: rotate(360deg); } 
 }
 
-/* ==================================================
-   REDES SOCIAIS
-   ================================================== */
 .redes-sociais {
     position: relative;
     display: flex;
@@ -464,11 +437,8 @@ p {
 }
 
 .btn-expandir:hover {
-    color: #5EC990; /* Dá um feedback visual ao passar o mouse */
+    color: #5EC990; 
 }
-
-/* Centralização do título quando o painel expande */
-
 
 .introducao, .Know {
     transition: opacity 0.5s ease;
@@ -477,9 +447,6 @@ p {
 /* ==================================================
    REGRAS PARA O PAINEL QUANDO EXPANDIDO
    ================================================== */
-
-
-
 
 /* Hover do Botão - Modo Claro e Escuro */
 .btn-expandir {
@@ -604,7 +571,6 @@ body.dark-mode .foto-cristal-expandida .foto-escura { display: block; }
     height: 100%;
 }
 
-/* Pasta do painel com as cores do Figma */
 .pasta-main-back { fill: #bce4ae; }
 .pasta-main-front { fill: #c0fcc5; }
 
