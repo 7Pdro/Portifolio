@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Asset&family=Bebas+Neue&family=Intel+One+Mono:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contato.css">
+
+    <!-- GSAP PARA ANIMAÇÃO FLUIDA -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <title>Pedro Paulo - Portfólio</title>
+</head>
+
+<body>
+
+    <button class="theme-toggle" id="themeToggle" title="Alternar Modo Escuro">
+        <div class="icon-container">
+            <!-- (Seus SVGs de lua e sol continuam aqui) -->
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="#0000cc" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" style="transform-origin: center; transform: scale(1.1);">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" style="transform-origin: center; transform: scale(1.1);">
+                <circle cx="12" cy="12" r="5.5"></circle>
+                <circle cx="12" cy="2.5" r="2"></circle>
+                <circle cx="12" cy="21.5" r="2"></circle>
+                <circle cx="2.5" cy="12" r="2"></circle>
+                <circle cx="21.5" cy="12" r="2"></circle>
+                <circle cx="5.3" cy="5.3" r="2"></circle>
+                <circle cx="18.7" cy="5.3" r="2"></circle>
+                <circle cx="5.3" cy="18.7" r="2"></circle>
+                <circle cx="18.7" cy="18.7" r="2"></circle>
+            </svg>
+        </div>
+    </button>
+
+    <model-viewer src="CristalRoxo.glb" camera-controls disable-zoom disable-pan camera-orbit="0deg 90deg auto"
+        min-camera-orbit="auto 90deg auto" max-camera-orbit="auto 90deg auto" interaction-prompt="none">
+
+        <!-- HOTSPOT DA FOTO EXPANDIDA NO CRISTAL (Sem data-normal para não esconder no giro) -->
+        <div class="foto-cristal-expandida" slot="hotspot-foto" data-position="0m 0m 0.85m">
+            <div class="foto-3d-inner">
+                <!-- Imagem Modo Claro -->
+                <img src="Foto-Aboutme-Expandido.png" class="foto-tema foto-roxo" alt="Pedro Paulo">
+
+                <!-- Imagem Modo Escuro -->
+                <img src="Foto-Aboutme-ExpandidoRoxo.png" class="foto-tema foto-escura" alt="Pedro Paulo">
+            </div>
+        </div>
+
+        <!-- PAINEL 1: SOBRE MIM -->
+        <div slot="hotspot-sobre" data-position="0m 0m 1.2m" data-normal="0m 0m 1m" data-visibility-attribute="visible"
+            class="painel-3d painel-sobre">
+
+            <img src="Moldura branco.png" class="moldura-sup">
+            <img src="Moldura branco.png" class="moldura-inf">
+
+            <div class="conteudo-textos">
+                <h3>About me</h3>
+                <p class="mini-texto texto-curto">Hi, nice to meet you, my name is Pedro Paulo and I am 17 years old. I
+                    am passionate about technology and design. I have experience in HTML, CSS, JavaScript, C#, Database and MySql.</p>
+                <p class="mini-texto texto-completo">
+                    Nice to meet you, my name is Pedro Paulo, I am 17 years old and a 2nd-year student in the IT
+                    technical course at COTEMIG. I am passionate about technology and design. I have experience in HTML,
+                    CSS, JavaScript, C#, Database and MySql.<br><br>
+                    I am always looking to learn more and improve at what I do. I haven't had professional experience
+                    yet, but I have been developing my knowledge through the technical course and through projects and
+                    activities carried out during my education. My goal is to keep learning and gain more and more
+                    experience in the tech field.
+                </p>
+            </div>
+
+            <div class="foto-wrapper">
+                <img class="FotoAbout" src="Foto-AboutMe.png">
+            </div>
+
+            <p class="btn-expandir">Click to expand</p>
+        </div>
+
+        <!-- PAINEL 2: SKILLS -->
+        <div slot="hotspot-skills" data-position="1.039m 0m -0.6m" data-normal="0.866m 0m -0.5m"
+            data-visibility-attribute="visible" class="painel-3d painel-skills">
+            <img src="Moldura branco.png" class="moldura-sup"><img src="Moldura branco.png" class="moldura-inf">
+            <h3>Skills</h3>
+
+            <!-- Nova Pasta Principal com bordas arredondadas -->
+            <svg class="PastaSkills-SVG" viewBox="-110 -80 220 160">
+                <!-- Verso da pasta (aparece à direita, atrás da frente) -->
+                <path class="pasta-main-back"
+                    d="M -30 -54 L 75 -54 Q 87 -54 87 -42 L 87 57 Q 87 69 75 69 L -30 69 Z"
+                    fill="#bcf5cc" />
+                <!-- Papel que sai de dentro -->
+                <rect class="pasta-papel" x="-72" y="-40" width="144" height="100" fill="#ffffff" rx="10" />
+                <!-- Frente da pasta (mesmo desenho das subpastas) -->
+                <path class="pasta-main-front"
+                    d="M -87 -58 Q -87 -70 -75 -70 L -30 -70 Q -20 -70 -15 -62 L -10 -53 Q -5 -40 8 -40 L 75 -40 Q 87 -40 87 -28 L 87 57 Q 87 69 75 69 L -75 69 Q -87 69 -87 57 Z"
+                    fill="#5EC990" />
+                <!-- Moldura no canto da pasta -->
+                <image class="moldura-pasta" href="MolduraPastas.png" x="-107" y="-34" width="98" height="109" preserveAspectRatio="xMinYMin meet" transform="translate(0 57) scale(1 -1)"/>
+                <!-- Nome da pasta, igual às subpastas -->
+                <text class="pasta-label" x="76" y="55" text-anchor="end">Skills</text>
+            </svg>
+
+            <p class="btn-expandir-skills">Click to expand</p>
+        </div>
+
+        <div slot="hotspot-projetos" data-position="-1.039m 0m -0.6m" data-normal="-0.866m 0m -0.5m"
+            data-visibility-attribute="visible" class="painel-3d painel-projetos">
+            <img src="Moldura branco.png" class="moldura-sup"><img src="Moldura branco.png" class="moldura-inf">
+
+            <div class="projects-title-row">
+                <h3>Projects</h3>
+                <div class="linha-decorativa"></div>
+            </div>
+            <p class="mini-texto">Some of my projects</p>
+
+            <!-- Grid de mini projetos (visível quando fechado) -->
+            <div class="mini-projects-grid">
+                <div class="mini-proj"><img src="morrow.png" alt="Morrow"></div>
+                <div class="mini-proj"><img src="Restaurante.png" alt="Site restaurante"></div>
+                <div class="mini-proj"><img src="Flex.png" alt="Site teste de flex"></div>
+                <div class="mini-proj"><img src="tabela.png" alt="Tabela periódica"></div>
+            </div>
+
+            <!-- Botão do Github (Visível apenas expandido) -->
+            <a href="https://github.com/7Pdro?tab=repositories" target="_blank" class="github-repo-btn">
+                <span class="github-texto">More on my repository</span>
+                <div class="github-icon-circle">
+                    <img src="github.svg" alt="GitHub">
+                </div>
+            </a>
+
+            <p class="btn-expandir-projetos">Click to expand</p>
+        </div>
+    </model-viewer>
+
+    <!-- Resto do conteúdo da página (Introdução, redes sociais e círculos) continuam iguaizinhos... -->
+    <div class="introducao">
+        <span class="saudacao">Hi, i'm</span>
+        <h1 class="nome"><span class="pedro">Pedro</span><br><span class="paulo">Paulo</span></h1>
+        <h2 class="cargo">Full Stack -<br>Developer</h2>
+        <div class="redes-sociais">
+            <a href="https://github.com/7Pdro?tab=repositories" target="_blank" class="botão-redes"><img class="redes"
+                    src="github.svg"></a>
+            <a href="https://www.linkedin.com/in/pedro-paulo-1b8a32442" target="_blank" rel="noopener" class="botão-redes"><img class="redes" src="linkedin.svg"></a>
+            <button type="button" class="btn-contato" id="btnContato" aria-haspopup="dialog">Contact</button>
+        </div>
+    </div>
+
+    <h1 class="Know"><span class="pedro">To get to<br>know me<br>better</span><br></h1>
+
+    <div class="bg-container">
+        <div class="gradient-circle circle-1"></div>
+        <div class="gradient-circle circle-2"></div>
+        <div class="gradient-circle circle-3"></div>
+        <div class="gradient-circle circle-4"></div>
+        <div class="gradient-circle circle-5"></div>
+        <div class="gradient-circle circle-6"></div>
+    </div>
+
+    <!-- ESTRUTURA PARA A ANIMAÇÃO DAS SKILLS -->
+    <!-- As raízes e as subpastas são desenhadas pelo script.js dentro deste SVG -->
+    <div class="skills-expanded-container">
+        <svg class="vines-svg" id="skillsSvg" preserveAspectRatio="none"></svg>
+    </div>
+
+    <div class="projetos-expanded-container">
+        <!-- Substitua os "#" pelos links reais dos seus projetos -->
+        <div class="proj-card-wrapper top-left">
+            <a href="https://7pdro.github.io/Morrow/" target="_blank" class="proj-card-inner">
+                <div class="proj-img">
+                    <img src="morrow.png">
+                </div>
+                <p class="proj-desc">Morrow - Modelo site de roupa</p>
+            </a>
+        </div>
+
+        <div class="proj-card-wrapper top-right">
+            <a href="https://7pdro.github.io/Recria-o-site-restaurante/" target="_blank" class="proj-card-inner">
+                <div class="proj-img">
+                    <img src="Restaurante.png">
+                </div>
+                <p class="proj-desc">Modelo site restaurante</p>
+            </a>
+        </div>
+
+        <div class="proj-card-wrapper bottom-left">
+            <a href="https://7pdro.github.io/Site-uso-da-flex/" target="_blank" class="proj-card-inner">
+                <div class="proj-img">
+                    <img src="Flex.png">
+                </div>
+                <p class="proj-desc">Site teste de flex</p>
+            </a>
+        </div>
+
+        <div class="proj-card-wrapper bottom-right">
+            <a href="https://7pdro.github.io/Tabela-periodica-/" target="_blank" class="proj-card-inner">
+                <div class="proj-img">
+                    <img src="tabela.png">
+                </div>
+                <p class="proj-desc">Site tabela periódica</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================================================
+         PAINEL DE CONTATO (abre no botão "Contact")
+         Os dados reais (email, whatsapp, linkedin) ficam no começo do form.js
+         ================================================== -->
+    <div class="contato-overlay" id="contatoOverlay" aria-hidden="true">
+        <div class="contato-painel" role="dialog" aria-modal="true" aria-labelledby="contatoTitulo">
+
+            <button type="button" class="contato-fechar" id="contatoFechar" aria-label="Close contact panel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18"></path>
+                </svg>
+            </button>
+
+            <div class="contato-scroll">
+                <div class="contato-titulo-row">
+                    <h2 id="contatoTitulo">Contact</h2>
+                    <div class="contato-linha"></div>
+                </div>
+
+                <div class="contato-canais">
+                    <a class="canal" data-canal="email" href="#">
+                        <span class="canal-icone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                                <path d="M3 7l9 6 9-6"></path>
+                            </svg>
+                        </span>
+                        <span class="canal-info">
+                            <span class="canal-nome">Email</span>
+                            <span class="canal-valor">pedropauloo894@gmail.com</span>
+                        </span>
+                    </a>
+
+                    <a class="canal" data-canal="whatsapp" href="#" target="_blank" rel="noopener">
+                        <span class="canal-icone">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path>
+                                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path>
+                            </svg>
+                        </span>
+                        <span class="canal-info">
+                            <span class="canal-nome">Whatsapp</span>
+                            <span class="canal-valor">+55 31 99745-1069</span>
+                        </span>
+                    </a>
+
+                    <a class="canal" data-canal="linkedin" href="#" target="_blank" rel="noopener">
+                        <span class="canal-icone"><img src="linkedin.svg" alt=""></span>
+                        <span class="canal-info">
+                            <span class="canal-nome">Linkedin</span>
+                            <span class="canal-valor">@pedro-paulo</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="contato-divisor"><span>or send a message</span></div>
+
+                <form id="contatoForm" novalidate>
+                    <div class="campo-linha">
+                        <div class="campo">
+                            <label for="cNome">Name</label>
+                            <input id="cNome" name="nome" type="text" autocomplete="name" maxlength="80" placeholder="Your name">
+                            <span class="erro" id="eNome" aria-live="polite"></span>
+                        </div>
+                        <div class="campo">
+                            <label for="cEmail">Email</label>
+                            <input id="cEmail" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@email.com">
+                            <span class="erro" id="eEmail" aria-live="polite"></span>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="cMsg">Message</label>
+                        <textarea id="cMsg" name="mensagem" rows="4" maxlength="800" placeholder="Write your message here..."></textarea>
+                        <div class="campo-rodape">
+                            <span class="erro" id="eMsg" aria-live="polite"></span>
+                            <span class="contador" id="contadorMsg">0/800</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-enviar" id="btnEnviar">
+                        <span class="btn-enviar-texto">Send message</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 3L10 14"></path>
+                            <path d="M21 3l-7 18-4-7-7-4 18-7z"></path>
+                        </svg>
+                    </button>
+
+                    <div class="contato-status" id="contatoStatus" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="contato-rodape">
+                    <span id="contatoRascunho"></span>
+                    <span id="contatoHistorico"></span>
+                    <button type="button" class="btn-limpar" id="btnLimpar">Clear saved data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="form.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,962 @@
+body {
+    margin: 0;
+    background-color: #fcfcfd;
+    overflow: hidden;
+    font-family: sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.dark-mode {
+    background-color: #0b0c10;
+    color: #ffffff;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 8px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    outline: none;
+    z-index: 1000;
+}
+
+.icon-container {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark-mode .icon-container {
+    transform: rotate(360deg);
+}
+
+.icon-container svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.sun {
+    opacity: 0;
+    transform: scale(0.3) rotate(-45deg);
+}
+
+body.dark-mode .moon {
+    opacity: 0;
+    transform: scale(0.3) rotate(45deg);
+}
+
+body.dark-mode .sun {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+}
+
+body.dark-mode .painel-3d {
+    border-color: #AE7CD9;
+}
+
+/* Alterar o fundo dos botões das redes sociais */
+body.dark-mode .botão-redes {
+    background-color: #AE7CD9;
+}
+
+body.dark-mode .botão-redes:hover {
+    background-color: #c996f7;
+}
+
+/* Alterar o gradiente dos círculos animados no fundo */
+body.dark-mode .gradient-circle {
+    background: conic-gradient(from 0deg, #9D3BD5, #E4B7FF, #9D3BD5);
+}
+
+body.dark-mode .pedro { 
+    background: linear-gradient(90deg, #9D3BD5, #aa44e6, #fdfdfd, #9D3BD5); 
+    background-size: 300% 100%; 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    animation: gradientePedro 5s linear infinite; 
+}
+
+body.dark-mode .paulo { 
+    background: linear-gradient(90deg, #30FF37, #ffffff, #1dd320, #30FF37); 
+    background-size: 300% 100%; 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    animation: gradientePaulo 5s linear infinite; 
+}
+
+body.dark-mode .painel-3d {
+    border-color: #AE7CD9;
+}
+
+/* Botões do GitHub e LinkedIn */
+body.dark-mode .botão-redes {
+    background-color: #AE7CD9;
+}
+
+/* Círculos do background com as cores exatas */
+body.dark-mode .gradient-circle {
+    background: conic-gradient(from 0deg, #9D3BD5, #E4B7FF, #9D3BD5);
+}
+
+body.dark-mode .painel-3d {
+    background: rgba(82, 81, 81, 0.445);
+}
+
+model-viewer {
+    width: 100vw;
+    height: 100vh;
+    touch-action: none;
+    z-index: 1;
+}
+
+.painel-3d {
+    position: relative;
+    background: rgba(0, 0, 0, 0.493);
+    backdrop-filter: blur(12px);
+    border: 6px solid #5EC990;
+    border-radius: 73px;
+    padding: 20px 35px 25px 35px; /* Menos padding em cima para subir o "About me" */
+    color: #fff;
+    width: 40vh;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.painel-3d[data-visible] {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ==================================================
+   MOLDURAS DOS CANTOS
+   ================================================== */
+.moldura-sup {
+    position: absolute;
+    top: -25px;
+    left: -25px;
+    width: 150px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.moldura-inf {
+    position: absolute;
+    bottom: -25px;
+    right: -25px;
+    width: 150px;
+    transform: rotate(180deg);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ==================================================
+   ALTURA DOS PAINÉIS
+   ================================================== */
+.painel-sobre { height: 62vh; }
+.painel-skills { height: 381px; }
+.painel-projetos { height: 438px; }
+
+/* ==================================================
+   TEXTOS DO PAINEL
+   ================================================== */
+.painel-3d h3 {
+    font-family: 'Intel One Mono', monospace;
+    font-size: 42px;
+    font-weight: 350;
+    margin: 0 0 8px 0; /* Removida altura fixa de 100px que criava o buraco */
+    width: 100%;
+    height: auto;      /* Agora o título ocupa apenas o espaço necessário */
+    display: flex;
+    line-height: 1.1; 
+}
+
+.mini-texto {
+    font-family: 'Intel One Mono', monospace;
+    font-size: clamp(22px, 2vh, 18px);
+    font-weight: 350;
+    margin: 0 0 10px 0;
+    letter-spacing: -5%;
+    line-height: 120%;
+    text-align: left;
+}
+
+.FotoAbout {
+    width: 100%;
+    max-width: 240px;
+    margin: 5px auto;
+    display: block;
+    object-fit: contain;
+}
+
+p.btn-expandir {
+    font-family: "Italianno", cursive;
+    font-size: 34px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+    z-index: 10;
+}
+
+.PastaSkills {
+    width: 260px;
+    align-self: center;
+    margin: 0;
+    display: block;
+}
+
+p {
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 40px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+/* ==================================================
+   TEXTOS FORA DOS PAINÉIS
+   ================================================== */
+.introducao {
+    position: absolute;
+    top: 70px;
+    left: 50px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.Know {
+    position: absolute;
+    top: 17%;
+    right: 60px;
+    text-align: right;
+    margin: 0;
+    font-family: 'Intel One Mono', monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 48px;
+    line-height: 102%;
+    letter-spacing: 0%;
+}
+
+.saudacao {
+    font-family: 'Intel One Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(20px, 2.5vw, 46px);
+    line-height: 100%;
+}
+
+.nome {
+    font-family: 'Intel One Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(50px, 8.5vw, 148px);
+    line-height: 89%;
+    letter-spacing: -6%;
+    margin-top: 10px;
+}
+
+.pedro { 
+    background: linear-gradient(90deg, #9D3BD5, #9f3fd6, #000000, #9D3BD5); 
+    background-size: 300% 100%; 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    animation: gradientePedro 5s linear infinite; 
+}
+
+.paulo { 
+    background: linear-gradient(90deg, #30FF37, #000000, #1ba11d, #30FF37); 
+    background-size: 300% 100%; 
+    background-clip: text; 
+    -webkit-background-clip: text; 
+    color: transparent; 
+    animation: gradientePaulo 5s linear infinite; 
+}
+
+@keyframes gradientePedro { 
+    0% { background-position: 300% 50%; } 
+    100% { background-position: 0% 50%; } 
+}
+
+@keyframes gradientePaulo { 
+    0% { background-position: 300% 50%; } 
+    100% { background-position: 0% 50%; } 
+}
+
+.cargo {
+    font-family: 'Intel One Mono', monospace;
+    font-weight: 400;
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 89%;
+    margin-top: -60px;
+}
+
+/* ==================================================
+   BACKGROUND ANIMADO (CÍRCULOS)
+   ================================================== */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden; /* Evita barra de rolagem se os círculos vazarem */
+}
+
+.gradient-circle {
+    position: absolute;
+    border-radius: 50%;
+    /* Usa a variável --espessura, se você não definir nenhuma ele usa 2px */
+    padding: var(--espessura, 2px); 
+    background: conic-gradient(from 0deg, #30FF37, #1ba11d, #74ff79, #30FF37);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: spin linear infinite;
+    /* Usa a variável --opacidade para deixar alguns círculos mais fracos */
+    opacity: var(--opacidade, 1);
+}
+
+/* 1. Círculo grande superior esquerdo */
+.circle-1 { 
+    --espessura: 3px; 
+    --opacidade: 0.7;
+    width: 50vw; height: 50vw; 
+    top: -20vw; left: -15vw; 
+    animation-duration: 8s; 
+}
+
+/* 2. Círculo médio cortando o canto inferior esquerdo */
+.circle-2 { 
+    --espessura: 3px;
+    width: 35vw; height: 35vw; 
+    bottom: -10vw; left: -10vw; 
+    animation-duration: 10s; 
+    animation-direction: reverse; 
+}
+
+/* 3. Círculo central perto do texto */
+.circle-3 { 
+    --espessura: 3px; 
+    --opacidade: 0.6;
+    width: 25vw; height: 25vw; 
+    top: 25vh; left: 15vw; 
+    animation-duration: 7s; 
+}
+
+/* 4. Círculo gigante e fininho na direita (bem discreto) */
+.circle-4 { 
+    --espessura: 6px; 
+    --opacidade: 0.4;
+    width: 70vw; height: 70vw; 
+    top: -10vw; right: -25vw; 
+    animation-duration: 15s; 
+}
+
+/* 5. Círculo inferior direito */
+.circle-5 { 
+    --espessura: 3px; 
+    --opacidade: 0.5;
+    width: 30vw; height: 30vw; 
+    bottom: -15vw; right: -9vw; 
+    animation-duration: 9s; 
+}
+
+/* 6. Círculo grande de fundo para preencher espaço vazio */
+.circle-6 { 
+    --espessura: 4px; 
+    width: 40vw; height: 40vw; 
+    top: 35vh; left: 40vw; 
+    animation-duration: 20s; 
+    animation-direction: reverse; 
+}
+
+@keyframes spin { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+/* ==================================================
+   REDES SOCIAIS
+   ================================================== */
+.redes-sociais {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 99;
+}
+
+.botão-redes { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 50px; 
+    height: 50px; 
+    background-color: #A2F3B6; 
+    border-radius: 10px; 
+    text-decoration: none; 
+    transition: transform 0.2s ease, background-color 0.2s ease; 
+}
+
+.botão-redes:hover { 
+    transform: translateY(-2px); 
+    background-color: #7fe298; 
+}
+
+.redes { 
+    width: 37px; 
+    height: 37px; 
+    object-fit: contain; 
+    pointer-events: none; 
+}
+
+.conteudo-textos {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}   
+
+.foto-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Fundamental para o GSAP mover a foto */
+    z-index: 10;
+}
+
+.btn-expandir {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 11;
+}
+
+.btn-expandir:hover {
+    color: #5EC990; /* Dá um feedback visual ao passar o mouse */
+}
+
+/* Centralização do título quando o painel expande */
+
+
+.introducao, .Know {
+    transition: opacity 0.5s ease;
+}
+
+/* ==================================================
+   REGRAS PARA O PAINEL QUANDO EXPANDIDO
+   ================================================== */
+
+
+
+
+/* Hover do Botão - Modo Claro e Escuro */
+.btn-expandir {
+    transition: color 0.3s ease;
+}
+
+/* Hover do botão Click to Expand/Come back no Modo Escuro */
+body.dark-mode .btn-expandir:hover {
+    color: #834eb1;
+}
+
+.texto-completo {
+    width: 100% !important;
+    line-height: 1.6;
+}
+
+/* Hotspot 3D da Foto (sem position: fixed para não quebrar o 3D) */
+.foto-cristal-expandida {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.6);
+}
+
+.foto-cristal-expandida img {
+    max-width: 440px; /* Ajuste o tamanho da foto se necessário */
+    height: auto;
+    display: block;
+}
+
+/* Centralização do botão no painel expandido */
+
+
+/* Foto expandida no cristal */
+.foto-cristal-expandida {
+    position: relative;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.foto-3d-inner {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.foto-cristal-expandida img {
+    max-width: 420px;
+    height: auto;
+    filter: drop-shadow(0px 8px 22px rgba(0, 0, 0, 0.4));
+}
+
+/* Exibição por tema */
+.foto-cristal-expandida .foto-roxo { display: block; }
+.foto-cristal-expandida .foto-escura { display: none; }
+
+body.dark-mode .foto-cristal-expandida .foto-roxo { display: none; }
+body.dark-mode .foto-cristal-expandida .foto-escura { display: block; }
+
+/* Texto completo */
+.texto-completo {
+    display: block;
+    height: 0;            /* fechado: sem altura (a animação abre) */
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    margin: 0;
+    width: 100% !important;
+    line-height: 1.6;
+    /* Aumentado o tamanho mínimo e máximo da fonte */
+    font-size: clamp(23px, 2.2vh, 20px); 
+    text-align: justify;
+}
+
+/* ==================================================
+   ANIMAÇÃO DE SKILLS (SVGs E GALHOS)
+   ================================================== */
+
+.PastaSkills-SVG {
+    width: 100%;
+    max-width: 220px;
+    margin: 5px auto;
+    display: block;
+    overflow: visible;
+}
+
+.pasta-papel {
+    opacity: 0; /* Escondido até a animação de abrir */
+    transform: translateY(10px);
+}
+
+.btn-expandir-skills {
+    font-family: "Italianno", cursive;
+    font-size: 34px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-expandir-skills:hover {
+    color: #5EC990;
+}
+
+/* Container tela cheia */
+.skills-expanded-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    pointer-events: none;
+    display: none; 
+}
+
+.vines-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Pasta do painel com as cores do Figma */
+.pasta-main-back { fill: #bce4ae; }
+.pasta-main-front { fill: #c0fcc5; }
+
+/* CORES PARA O MODO ESCURO */
+body.dark-mode .pasta-main-back { fill: #c09fe3; }
+body.dark-mode .pasta-main-front { fill: #d5bbf2; }
+body.dark-mode .btn-expandir-skills:hover { color: #AE7CD9; }
+
+body.dark-mode .pasta-label { fill: #522180; }
+body.dark-mode .sf-back { fill: #c09fe3; }
+body.dark-mode .sf-front { fill: #d5bbf2; }
+body.dark-mode .sub-folder > text { fill: #522180; }
+
+/* ==================================================
+   ÁRVORE DE SKILLS (raízes e subpastas)
+   ================================================== */
+.vines-svg { overflow: visible; }
+
+.raiz-fita { fill: #8B5A2B; }
+.raiz-fio {
+    fill: none;
+    stroke: #a87a45;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.raiz-galho {
+    fill: none;
+    stroke: #8B5A2B;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.raiz-folha { fill: #5EC990; }
+
+.pasta-label {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    fill: #5f7f69;
+}
+
+.sf-back { fill: #bce4ae; }
+.sf-front { fill: #c0fcc5; }
+.sub-folder > text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    fill: #5f7f69;
+}
+
+/* ==================================================
+   PAINEL DE PROJECTS (MINI GRID E EXPANDIDO)
+   ================================================== */
+.projects-title-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.linha-decorativa {
+    flex-grow: 1;
+    height: 1px;
+    background-color: #fff;
+    opacity: 0.8;
+    margin-top: -5px;
+}
+
+.mini-projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.mini-proj {
+    background-color: #d9d9d9;
+    color: #000;
+    font-family: 'Intel One Mono', monospace;
+    font-size: clamp(11px, 1.3vh, 16px);
+    aspect-ratio: 1.7 / 1; /* mesma proporção do card grande: a saída fica perfeita */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mini-proj img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* igual ao card grande: a troca na animação fica invisível */
+    display: block;
+}
+
+.btn-expandir-projetos {
+    font-family: "Italianno", cursive;
+    font-size: 36px;
+    margin: 10px auto 0;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-expandir-projetos:hover {
+    color: #5EC990;
+}
+
+body.dark-mode .btn-expandir-projetos:hover {
+    color: #AE7CD9;
+}
+
+.github-repo-btn {
+    --gh-cor: #5EC990; /* verde do seu tema (roxo no modo escuro) */
+    --gh-gap: 4px; /* espaço entre a borda do botão e o preenchimento no hover */
+    --gh-ease: cubic-bezier(0.65, 0, 0.35, 1);
+    position: absolute;
+    bottom: -80px;
+    display: none;
+    opacity: 0;
+    box-sizing: border-box;
+    height: 52px;
+    padding: 0 6px 0 20px;
+    align-items: center;
+    background-color: rgba(60, 60, 60, 0.85); /* Cinza translúcido igual ao Figma */
+    color: #fff;
+    font-family: 'Intel One Mono', monospace;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 40px;
+    border: 1px solid var(--gh-cor);
+    white-space: nowrap;
+    z-index: 10;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: scale 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Texto: reserva o espaço do círculo (38px + 15px de respiro) e some no hover */
+.github-texto {
+    padding-right: 53px;
+    transition: opacity 0.25s ease;
+}
+
+/* O círculo colorido é este pseudo-elemento: no hover ele cresce para a esquerda e preenche o botão */
+.github-repo-btn::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 38px;
+    height: 38px;
+    border-radius: 40px;
+    background-color: var(--gh-cor);
+    z-index: -1;
+    transition: top 0.5s var(--gh-ease), right 0.5s var(--gh-ease),
+                width 0.5s var(--gh-ease), height 0.5s var(--gh-ease);
+}
+
+/* Ícone: fica no círculo e, no hover, desliza para o centro do botão */
+.github-icon-circle {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: right 0.5s var(--gh-ease);
+}
+
+.github-repo-btn img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1); /* Deixa o ícone do GitHub branco */
+}
+
+.github-repo-btn:hover {
+    scale: 1.05;
+    box-shadow: 0 4px 20px rgba(94, 201, 144, 0.3);
+}
+
+.github-repo-btn:hover::before {
+    top: var(--gh-gap);
+    right: var(--gh-gap);
+    width: calc(100% - var(--gh-gap) * 2);
+    height: calc(100% - var(--gh-gap) * 2);
+}
+
+.github-repo-btn:hover .github-icon-circle {
+    right: calc(50% - 19px);
+}
+
+.github-repo-btn:hover .github-texto {
+    opacity: 0;
+}
+
+/* ---------- MODO ESCURO (roxo) ---------- */
+body.dark-mode .github-repo-btn {
+    --gh-cor: #AE7CD9;
+}
+
+body.dark-mode .github-repo-btn:hover {
+    box-shadow: 0 4px 20px rgba(174, 124, 217, 0.3);
+}
+
+/* ==================================================
+   PROJECTS FLUTUANTES (EXPANDIDOS) - VISUAL FIGMA
+   ================================================== */
+.projetos-expanded-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    pointer-events: none;
+    display: none;
+}
+
+.proj-card-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    pointer-events: auto;
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.proj-card-inner {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+}
+
+.proj-img {
+    background-color: #d9d9d9;
+    color: #000;
+    font-family: 'Intel One Mono', monospace;
+    font-size: clamp(20px, 1.85vw, 36px);
+    width: clamp(240px, 23.5vw, 470px);
+    aspect-ratio: 1.7 / 1; /* mesma proporção do mini-card dentro do painel */
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 16px 32px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.proj-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* preenche o card sem distorcer */
+}
+
+body.dark-mode .proj-img {
+    box-shadow: 0px 10px 30px rgba(236, 235, 235, 0.397);
+}
+
+/* Legenda posicionada fora do fluxo: o centro do card é o centro da imagem */
+.proj-desc {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: auto;
+    margin: 10px 0 0 6px;
+    text-align: left;
+    white-space: nowrap;
+    font-family: 'Intel One Mono', monospace;
+    font-size: clamp(13px, 1.1vw, 22px) !important;
+    color: #000;
+}
+
+body.dark-mode .proj-desc {
+    color: #fff;
+}
+
+.proj-card-inner:hover .proj-img {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0px 18px 40px rgba(94, 201, 144, 0.4);
+}
+
+body.dark-mode .proj-card-inner:hover .proj-img {
+    box-shadow: 0px 18px 40px rgba(174, 124, 217, 0.4);
+}
+
+/* ==================================================
+   TRANSIÇÃO: card que cresce até a tela inteira
+   ================================================== */
+.proj-transicao {
+    position: fixed;
+    z-index: 300;
+    overflow: hidden;
+    pointer-events: none;
+    background-color: #d9d9d9;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.proj-transicao img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* ==================================================
+   CARDS DAS SKILLS (saem das subpastas) - mesmas cores das pastas
+   ================================================== */
+.sk-card-bg {
+    fill: #ffffff;
+    stroke: #5EC990;
+    stroke-width: 1.6;
+    filter: drop-shadow(0 6px 10px rgba(94, 201, 144, 0.35));
+}
+.sk-ic { fill: #4fb883; }
+.sk-ic-st { stroke: #4fb883; }
+.sk-icone-txt {
+    fill: #ffffff;
+    font-family: 'Intel One Mono', monospace;
+    font-weight: 700;
+}
+.sk-nome {
+    fill: #5f7f69;
+    font-family: 'Instrument Serif', serif;
+    font-size: 14px;
+}
+.sk-badge {
+    fill: #c0fcc5;
+    stroke: #5EC990;
+    stroke-width: 1;
+}
+.sk-ext {
+    fill: #3f7a5a;
+    font-family: 'Intel One Mono', monospace;
+    font-size: 10px;
+}
+
+body.dark-mode .sk-card-bg {
+    fill: #faf5ff;
+    stroke: #AE7CD9;
+    filter: drop-shadow(0 6px 10px rgba(174, 124, 217, 0.4));
+}
+body.dark-mode .sk-ic { fill: #8a52c4; }
+body.dark-mode .sk-ic-st { stroke: #8a52c4; }
+body.dark-mode .sk-nome { fill: #522180; }
+body.dark-mode .sk-badge { fill: #d5bbf2; stroke: #AE7CD9; }
+body.dark-mode .sk-ext { fill: #522180; }

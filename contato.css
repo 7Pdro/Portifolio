@@ -1,0 +1,445 @@
+/* ==================================================
+   CONTATO: botão "Contact", painel e formulário
+   Mesmas cores/fontes do site (menta no claro, lilás no escuro)
+   ================================================== */
+
+/* ---------- Botão "Contact" (ao lado do GitHub e do LinkedIn) ---------- */
+.btn-contato {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 18px;
+    margin-left: 4px;
+    background-color: #c0fcc5;
+    color: #000;
+    font-family: 'Intel One Mono', monospace;
+    font-size: 15px;
+    border: 4px solid rgba(70, 70, 70, 0.5);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-contato:hover {
+    transform: translateY(-2px);
+    background-color: #a2f3b6;
+}
+
+body.dark-mode .btn-contato {
+    background-color: #d5bbf2;
+    color: #2b0f47;
+}
+
+body.dark-mode .btn-contato:hover {
+    background-color: #c996f7;
+}
+
+/* ---------- Fundo escurecido ---------- */
+.contato-overlay {
+    --ct-bg: #c4fdc9;
+    --ct-tile: #b0efb9;
+    --ct-tile-hover: #9fe6aa;
+    --ct-chip: rgba(0, 0, 0, 0.09);
+    --ct-ink: #16301f;
+    --ct-ink-soft: #3b6a4a;
+    --ct-accent: #5EC990;
+    --ct-accent-hover: #4fb883;
+    --ct-accent-ink: #0d2617;
+    --ct-input: rgba(255, 255, 255, 0.6);
+    --ct-line: rgba(22, 48, 31, 0.3);
+    --ct-error: #b3261e;
+
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    /* sem backdrop-filter de propósito: desfocar a tela inteira por cima do cristal 3D e dos círculos
+       animados pesa muito no navegador. Um escurecido simples fica leve. */
+    background: rgba(8, 12, 10, 0.62);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+body.dark-mode .contato-overlay {
+    --ct-bg: #d5bbf2;
+    --ct-tile: #c4a3e8;
+    --ct-tile-hover: #b78ee0;
+    --ct-ink: #3a1560;
+    --ct-ink-soft: #6a3a9a;
+    --ct-accent: #AE7CD9;
+    --ct-accent-hover: #9a63cb;
+    --ct-accent-ink: #1f0838;
+    --ct-line: rgba(58, 21, 96, 0.35);
+    --ct-error: #a4161a;
+}
+
+.contato-overlay.aberto {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0s;
+}
+
+/* Com o painel aberto, pausa as animações infinitas do fundo (círculos girando e gradiente do nome) */
+body.contato-aberto .gradient-circle,
+body.contato-aberto .pedro,
+body.contato-aberto .paulo {
+    animation-play-state: paused;
+}
+
+/* ---------- Painel ---------- */
+.contato-painel {
+    position: relative;
+    display: flex;
+    width: min(560px, 100%);
+    max-height: 92vh;
+    box-sizing: border-box;
+    background: var(--ct-bg);
+    background-clip: padding-box;
+    border: 12px solid rgba(60, 60, 60, 0.55);
+    border-radius: 48px;
+    color: var(--ct-ink);
+    font-family: 'Intel One Mono', monospace;
+    overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    transform: translateY(18px) scale(0.96);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contato-overlay.aberto .contato-painel {
+    transform: none;
+}
+
+.contato-scroll {
+    width: 100%;
+    overflow-y: auto;
+    padding: 28px 32px 22px;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ct-accent) transparent;
+}
+
+.contato-fechar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: var(--ct-tile);
+    color: var(--ct-ink);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.contato-fechar:hover {
+    background: var(--ct-tile-hover);
+    transform: rotate(90deg);
+}
+
+.contato-fechar svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* ---------- Título com linha ---------- */
+.contato-titulo-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-right: 44px;
+    margin-bottom: 16px;
+}
+
+.contato-titulo-row h2 {
+    margin: 0;
+    font-family: 'Intel One Mono', monospace;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.contato-linha {
+    flex-grow: 1;
+    height: 1px;
+    background: var(--ct-line);
+    margin-top: 4px;
+}
+
+/* ---------- Canais (Email, Whatsapp, Linkedin) ---------- */
+.contato-canais {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.canal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    background: var(--ct-tile);
+    border-radius: 12px;
+    color: var(--ct-ink);
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.canal:hover {
+    background: var(--ct-tile-hover);
+    transform: translateX(3px);
+}
+
+.canal-icone {
+    flex: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ct-ink);
+}
+
+.canal-icone svg,
+.canal-icone img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.canal-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    min-width: 0;
+}
+
+.canal-nome {
+    font-size: 14px;
+}
+
+.canal-valor {
+    max-width: 100%;
+    padding: 1px 8px;
+    background: var(--ct-chip);
+    border-radius: 6px;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ---------- Divisor ---------- */
+.contato-divisor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 18px 0 14px;
+    font-size: 12px;
+    color: var(--ct-ink-soft);
+}
+
+.contato-divisor::before,
+.contato-divisor::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--ct-line);
+}
+
+/* ---------- Formulário ---------- */
+.campo-linha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 8px;
+    min-width: 0;
+}
+
+.campo label {
+    font-size: 12px;
+    color: var(--ct-ink-soft);
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    background: var(--ct-input);
+    color: var(--ct-ink);
+    font-family: 'Intel One Mono', monospace;
+    font-size: 14px;
+    border: 1.5px solid var(--ct-line);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.campo textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: var(--ct-ink-soft);
+    opacity: 0.6;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+    background: #fff;
+    border-color: var(--ct-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ct-accent) 35%, transparent);
+}
+
+.campo input[aria-invalid="true"],
+.campo textarea[aria-invalid="true"] {
+    border-color: var(--ct-error);
+}
+
+.campo-rodape {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.erro {
+    min-height: 14px;
+    font-size: 11px;
+    color: var(--ct-error);
+}
+
+.contador {
+    flex: none;
+    font-size: 11px;
+    color: var(--ct-ink-soft);
+}
+
+/* ---------- Botão enviar ---------- */
+.btn-enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 48px;
+    margin-top: 4px;
+    background: var(--ct-accent);
+    color: var(--ct-accent-ink);
+    font-family: 'Intel One Mono', monospace;
+    font-size: 15px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-enviar svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-enviar:hover:not(:disabled) {
+    background: var(--ct-accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-enviar:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.contato-status {
+    min-height: 18px;
+    margin-top: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.contato-status.ok { color: var(--ct-ink); }
+.contato-status.erro-envio { color: var(--ct-error); }
+
+/* ---------- Rodapé (rascunho, histórico, limpar) ---------- */
+.contato-rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 12px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--ct-ink-soft);
+}
+
+.btn-limpar {
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-limpar:hover {
+    color: var(--ct-ink);
+}
+
+/* ---------- Foco visível para teclado ---------- */
+.btn-contato:focus-visible,
+.contato-fechar:focus-visible,
+.canal:focus-visible,
+.btn-enviar:focus-visible,
+.btn-limpar:focus-visible {
+    outline: 3px solid var(--ct-accent, #5EC990);
+    outline-offset: 2px;
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 560px) {
+    .contato-painel {
+        border-width: 8px;
+        border-radius: 36px;
+    }
+
+    .contato-scroll {
+        padding: 24px 18px 18px;
+    }
+
+    .campo-linha {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contato-overlay,
+    .contato-painel,
+    .canal,
+    .btn-contato,
+    .btn-enviar,
+    .contato-fechar {
+        transition: none;
+    }
+}
