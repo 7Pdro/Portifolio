@@ -17,7 +17,7 @@
         linkedinTexto: "@pedro-paulo",
         // Opcional: URL de um serviço de formulário (ex.: Formspree "https://formspree.io/f/xxxxxxx").
         // Vazio = o formulário abre o app de email já preenchido (mailto).
-        endpoint: ""
+        endpoint: "https://formsubmit.co/ajax/pedropauloo894@gmail.com"
     };
 
     const CHAVES = {
