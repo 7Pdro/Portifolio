@@ -1,9 +1,4 @@
-/* ==================================================
-   CONTATO: botão "Contact", painel e formulário
-   Mesmas cores/fontes do site (menta no claro, lilás no escuro)
-   ================================================== */
 
-/* ---------- Botão "Contact" (ao lado do GitHub e do LinkedIn) ---------- */
 .btn-contato {
     display: flex;
     align-items: center;
@@ -35,7 +30,6 @@ body.dark-mode .btn-contato:hover {
     background-color: #c996f7;
 }
 
-/* ---------- Fundo escurecido ---------- */
 .contato-overlay {
     --ct-bg: #c4fdc9;
     --ct-tile: #b0efb9;
@@ -177,7 +171,6 @@ body.contato-aberto .paulo {
     margin-top: 4px;
 }
 
-/* ---------- Canais (Email, Whatsapp, Linkedin) ---------- */
 .contato-canais {
     display: flex;
     flex-direction: column;
@@ -241,7 +234,7 @@ body.contato-aberto .paulo {
     white-space: nowrap;
 }
 
-/* ---------- Divisor ---------- */
+
 .contato-divisor {
     display: flex;
     align-items: center;
@@ -259,7 +252,6 @@ body.contato-aberto .paulo {
     background: var(--ct-line);
 }
 
-/* ---------- Formulário ---------- */
 .campo-linha {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -335,7 +327,6 @@ body.contato-aberto .paulo {
     color: var(--ct-ink-soft);
 }
 
-/* ---------- Botão enviar ---------- */
 .btn-enviar {
     display: flex;
     align-items: center;
