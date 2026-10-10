@@ -53,7 +53,6 @@ if (themeToggleBtn) {
 
         const molduras = document.querySelectorAll('.moldura-sup, .moldura-inf');
         const fotoAbout = document.querySelector('.FotoAbout');
-        const favicon = document.getElementById('favicon');
 
         if (modelViewer) {
             modelViewer.src = isDarkMode ? 'CristalVerde.glb' : 'CristalRoxo.glb';
@@ -65,12 +64,7 @@ if (themeToggleBtn) {
 
         if (fotoAbout) {
             fotoAbout.src = isDarkMode ? 'Foto-AboutMeRoxa.png' : 'Foto-AboutMe.png';
-        }
-
-        if (favicon) {
-        favicon.href = isDarkMode ? 'iconeroxo.png' : 'icone.png';
-    }
-        
+        }        
     });
 }
 
