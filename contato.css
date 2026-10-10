@@ -52,8 +52,6 @@ body.dark-mode .btn-contato:hover {
     justify-content: center;
     padding: 16px;
     box-sizing: border-box;
-    /* sem backdrop-filter de propósito: desfocar a tela inteira por cima do cristal 3D e dos círculos
-       animados pesa muito no navegador. Um escurecido simples fica leve. */
     background: rgba(8, 12, 10, 0.62);
     opacity: 0;
     visibility: hidden;
@@ -79,14 +77,12 @@ body.dark-mode .contato-overlay {
     transition: opacity 0.3s ease, visibility 0s;
 }
 
-/* Com o painel aberto, pausa as animações infinitas do fundo (círculos girando e gradiente do nome) */
 body.contato-aberto .gradient-circle,
 body.contato-aberto .pedro,
 body.contato-aberto .paulo {
     animation-play-state: paused;
 }
 
-/* ---------- Painel ---------- */
 .contato-painel {
     position: relative;
     display: flex;
