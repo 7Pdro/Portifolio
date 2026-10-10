@@ -1,7 +1,4 @@
 // ==================================================
-// CONTATO: botão "Contact", painel, formulário,
-// localStorage (fica salvo no navegador) e sessionStorage (vale só enquanto a aba está aberta)
-//
 //  localStorage   -> tema (claro/escuro), rascunho do formulário, histórico de mensagens enviadas
 //  sessionStorage -> se o painel estava aberto e quantas mensagens foram enviadas nesta visita
 // ==================================================
